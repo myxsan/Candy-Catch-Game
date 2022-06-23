@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject livesHolder;
+    [SerializeField] GameObject gameOverPanel;
     
     [SerializeField] Text scoreText;
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         PrintScore();
+
+        gameOverPanel.SetActive(false);
     }
 
     void Update()
@@ -66,5 +69,6 @@ public class GameManager : MonoBehaviour
     {
         CandySpawner.instance.StopSpawning();
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
+        gameOverPanel.SetActive(true);
     }
 }
