@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    
+    [SerializeField] Text scoreText;
 
     private int score = 0;
     private bool gameOver = false;
@@ -16,7 +20,8 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        
+        score = 0;
+        PrintScore();
     }
 
     void Update()
@@ -27,6 +32,11 @@ public class GameManager : MonoBehaviour
     public void IncrementScore()
     {
         score++;
-        print(score);
+        PrintScore();
+    }
+
+    private void PrintScore()
+    {
+        scoreText.text = score.ToString("00");
     }
 }
