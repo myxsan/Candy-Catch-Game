@@ -5,6 +5,8 @@ using UnityEngine;
 public class CandySpawner : MonoBehaviour
 {
 
+    public static CandySpawner instance;
+
     [SerializeField] float maxX = 7.5f;
     [SerializeField] float timeBeforeStartSpawning = .5f;
     [SerializeField] float spawnInterval = 4f;
@@ -15,6 +17,11 @@ public class CandySpawner : MonoBehaviour
     [SerializeField] bool isPlayable = true;
 
     [SerializeField] GameObject[] Candies;
+
+    private void Awake() {
+        instance = this;
+
+    }
     void Start()
     {
         StartCoroutine(SpawnCandies());
@@ -66,11 +73,8 @@ public class CandySpawner : MonoBehaviour
         }
     }
     
-    private void StopSpawning()
+    public void StopSpawning()
     {
-        if(!isPlayable)
-        {
-            StopCoroutine(SpawnCandies());
-        }
+        StopCoroutine(SpawnCandies());
     }
 }
