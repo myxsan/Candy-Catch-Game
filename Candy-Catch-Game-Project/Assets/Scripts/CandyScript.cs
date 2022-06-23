@@ -21,6 +21,8 @@ public class CandyScript : MonoBehaviour
         if(other.tag == "Player")
         {
             Destroy(gameObject);
+
+            GameManager.instance.IncrementScore();
             Debug.Log($"{this.name} Eaten");
         }
 
